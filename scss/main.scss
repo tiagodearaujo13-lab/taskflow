@@ -1,0 +1,22 @@
+// Import variables from _variables.scss
+@import 'variables';
+@import 'reset';
+@import 'mixins';
+
+// Import layots from _layouts.scss
+@import 'layout/grid';
+@import 'layout/header';
+
+// Components from _components.scss
+@import 'components/sidebar';
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/cards';
+
+body {
+  background-color: $bg-dark;
+  color: $text_white;
+  font-family: $font-main;
+  height: 100vh;
+  overflow: hidden;
+}

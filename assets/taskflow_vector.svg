@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400">
+  <rect x="0" y="0" width="1200" height="400" rx="40" fill="#CCFF00"/>
+  <rect x="80" y="80" width="240" height="240" rx="32" fill="#000000"/>
+  <rect x="145" y="145" width="110" height="110" rx="18" fill="#FFFFFF"/>
+  <rect x="165" y="165" width="25" height="25" fill="#000"/>
+  <rect x="210" y="165" width="25" height="25" fill="#000"/>
+  <rect x="165" y="210" width="25" height="25" fill="#000"/>
+  <rect x="210" y="210" width="25" height="25" fill="#000"/>
+  <text x="380" y="245" font-family="Arial, Helvetica, sans-serif" font-size="140" font-weight="700" fill="#000000">
+    TASKFLOW
+  </text>
+</svg>

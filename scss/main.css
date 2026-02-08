@@ -51,7 +51,7 @@ body {
   background-size: 20px 20px;
 }
 
-/* COMPONENT: SIDEBAR */
+/* COMPONENT: SIDEBAR (RESPONSIVO) */
 .sidebar {
   width: 280px;
   height: 100%;
@@ -60,7 +60,27 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 6px 6px 0px 0px #000000;
-  z-index: 10;
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Regra Mobile para Sidebar */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    /* Esconde por padrão */
+    border-right: 4px solid #000;
+  }
+
+  /* Classe que o JS adiciona para abrir */
+  .sidebar.active {
+    transform: translateX(0);
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.7);
+  }
 }
 
 .sidebar .logo-area {
@@ -143,12 +163,6 @@ body {
   gap: 8px;
 }
 
-.sidebar .active-squad .squad-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
 .sidebar .active-squad .squad-member {
   background-color: #2A2A2A;
   padding: 12px;
@@ -198,6 +212,10 @@ body {
   background-color: #ff00ff;
 }
 
+.sidebar .active-squad .squad-member .avatar-wrapper.neon-blue::after {
+  background-color: #00ffff;
+}
+
 .sidebar .active-squad .squad-member .member-info {
   display: flex;
   flex-direction: column;
@@ -240,7 +258,7 @@ body {
   box-shadow: 4px 4px 0px 0px #000000;
 }
 
-/* LAYOUT: HEADER */
+/* LAYOUT: HEADER (RESPONSIVO) */
 .top-bar {
   height: 80px;
   background-color: #1E1E1E;
@@ -250,7 +268,36 @@ body {
   align-items: center;
   padding: 0 32px;
   box-shadow: 4px 4px 0px 0px #000000;
-  z-index: 5;
+  z-index: 50;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 0 16px;
+    gap: 12px;
+  }
+}
+
+/* BOTÃO MENU MOBILE */
+.btn-menu-mobile {
+  display: none;
+  /* Escondido no Desktop */
+  background: transparent;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .btn-menu-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-menu-mobile .material-symbols-outlined {
+    font-size: 32px;
+  }
 }
 
 .top-bar .sprint-info {
@@ -269,6 +316,12 @@ body {
   margin: 0;
 }
 
+@media (max-width: 768px) {
+  .top-bar .sprint-info h2 {
+    font-size: 20px;
+  }
+}
+
 .top-bar .sprint-info h2 .highlight-blue {
   color: #0d59f2;
 }
@@ -282,6 +335,16 @@ body {
   border: 2px solid #000000;
   border-radius: 50px;
   box-shadow: 2px 2px 0px 0px #000000;
+}
+
+@media (max-width: 600px) {
+  .top-bar .sprint-info .badge-wrapper {
+    padding: 6px;
+  }
+
+  .top-bar .sprint-info .badge-wrapper .text {
+    display: none;
+  }
 }
 
 .top-bar .sprint-info .badge-wrapper .dot {
@@ -306,9 +369,21 @@ body {
   gap: 24px;
 }
 
+@media (max-width: 768px) {
+  .top-bar .actions {
+    gap: 12px;
+  }
+}
+
 /* COMPONENT: INPUTS */
 .search-wrapper {
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .search-wrapper {
+    display: none;
+  }
 }
 
 .search-input {
@@ -376,6 +451,16 @@ button:active {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 12px 24px;
+}
+
+@media (max-width: 600px) {
+  #btn-add-task {
+    padding: 10px;
+  }
+
+  #btn-add-task .btn-text {
+    display: none;
+  }
 }
 
 #btn-add-task:hover {
@@ -833,4 +918,27 @@ label {
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.btn-close-sidebar {
+  display: none;
+  /* Escondido no Desktop */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  /* Empurra para a direita */
+  color: #000;
+}
+
+.btn-close-sidebar .material-symbols-outlined {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .btn-close-sidebar {
+    display: block;
+    /* Aparece no Mobile */
+  }
 }

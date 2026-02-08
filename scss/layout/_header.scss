@@ -3,16 +3,40 @@
 .top-bar {
     height: 80px;
     background-color: $bg-surface;
-    border-bottom: 4px solid $border-color; // Borda grossa inferior
+    border-bottom: 4px solid $border-color; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 32px;
-    // Sombra para dar profundidade em relação ao board
     box-shadow: $shadow-neo; 
-    z-index: 5; 
+    z-index: 50; 
+    position: relative; // Garante contexto de pilha
 
-    // --- LADO ESQUERDO: INFO DA SPRINT ---
+    // RESPONSIVO: Ajustar padding no mobile
+    @media (max-width: 768px) {
+        padding: 0 16px;
+        gap: 12px;
+    }
+
+    // BOTÃO MENU MOBILE
+    .btn-menu-mobile {
+        display: none; // Escondido no Desktop
+        background: transparent;
+        color: $text-white;
+        cursor: pointer;
+        
+        @media (max-width: 1024px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .material-symbols-outlined {
+            font-size: 32px;
+        }
+    }
+
+    // --- INFO DA SPRINT ---
     .sprint-info {
         display: flex;
         align-items: center;
@@ -27,9 +51,12 @@
             color: $text-white;
             margin: 0;
 
-            .highlight-blue {
-                color: $color-primary; // O "#24" em azul
+            // No celular, diminuir a fonte
+            @media (max-width: 768px) {
+                font-size: 20px;
             }
+
+            .highlight-blue { color: $color-primary; }
         }
 
         .badge-wrapper {
@@ -39,15 +66,21 @@
             padding: 6px 16px;
             background-color: $bg-element;
             border: 2px solid $border-color;
-            border-radius: 50px; // Formato de pílula
+            border-radius: 50px;
             box-shadow: $shadow-neo-sm;
+
+            // Esconder texto "days left" em telas muito pequenas
+            @media (max-width: 600px) {
+                padding: 6px;
+                .text { display: none; }
+            }
 
             .dot {
                 width: 8px;
                 height: 8px;
                 background-color: $color-neon-green;
                 border-radius: 50%;
-                box-shadow: 0 0 5px $color-neon-green; // Efeito de brilho
+                box-shadow: 0 0 5px $color-neon-green; 
             }
 
             .text {
@@ -60,20 +93,28 @@
         }
     }
 
-    // --- LADO DIREITO: AÇÕES ---
+    // --- AÇÕES ---
     .actions {
         display: flex;
         align-items: center;
         gap: 24px;
 
-        // Container da Busca
+        @media (max-width: 768px) {
+            gap: 12px;
+        }
+
         .search-wrapper {
             position: relative;
+            
+            // No mobile, a busca pode sumir ou ficar menor
+            @media (max-width: 768px) {
+                display: none; // Simplificação: esconde busca no mobile
+            }
             
             .search-input {
                 width: 280px;
                 padding: 10px 16px;
-                padding-right: 40px; // Espaço para o ícone
+                padding-right: 40px; 
                 background-color: $bg-dark;
                 border: 2px solid $border-color;
                 border-radius: $radius-sm;
@@ -83,12 +124,10 @@
                 box-shadow: $shadow-neo-sm;
                 transition: all 0.2s;
 
-                &::placeholder {
-                    color: darken($text-gray, 10%);
-                }
+                &::placeholder { color: darken($text-gray, 10%); }
 
                 &:focus {
-                    border-color: $color-neon-pink; // Foco rosa neon
+                    border-color: $color-neon-pink; 
                     box-shadow: $shadow-neo;
                     outline: none;
                 }
@@ -100,45 +139,48 @@
                 top: 50%;
                 transform: translateY(-50%);
                 color: $text-gray;
-                pointer-events: none; // O clique atravessa o ícone
+                pointer-events: none; 
                 font-size: 20px;
             }
         }
 
-        // Estilo específico do botão "NEW TASK" no header
         #btn-add-task {
              background-color: $color-primary;
              color: $text-white;
              border: 2px solid $border-color;
-             box-shadow: $shadow-neo; // Sombra dura
+             box-shadow: $shadow-neo; 
              border-radius: $radius-sm;
-             
              font-family: $font-display;
              font-weight: 700;
              font-size: 14px;
              letter-spacing: 0.5px;
              text-transform: uppercase;
-             
              padding: 12px 24px;
              display: flex;
              align-items: center;
              gap: 8px;
              transition: all 0.15s ease;
              
+             // Ajuste botão Mobile: ícone apenas
+             @media (max-width: 600px) {
+                 padding: 10px;
+                 .btn-text { display: none; } // Esconde o texto "NEW TASK"
+             }
+             
              &:hover {
-                transform: translate(-2px, -2px); // Sobe
-                box-shadow: $shadow-neo-lg; // Sombra aumenta
+                transform: translate(-2px, -2px); 
+                box-shadow: $shadow-neo-lg; 
                 background-color: lighten($color-primary, 5%);
              }
              
              &:active {
-                transform: translate(0, 0); // Desce (clique)
-                box-shadow: $shadow-neo-sm; // Sombra diminui
+                transform: translate(0, 0); 
+                box-shadow: $shadow-neo-sm; 
              }
 
              .material-symbols-outlined {
                 font-size: 20px;
-                font-weight: 900; // Ícone mais grosso
+                font-weight: 900; 
              }
         }
     }

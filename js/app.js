@@ -13,6 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const taskForm = document.getElementById('task-form');
   const todoList = document.getElementById('todo-list');
 
+  const btnMenuMobile = document.getElementById('btn-menu-mobile');
+  const sidebar = document.querySelector('.sidebar');
+  const btnCloseSidebar = document.querySelector('.btn-close-sidebar'); // Novo botão
+
+  // Abrir Menu
+  if (btnMenuMobile) {
+    btnMenuMobile.addEventListener('click', (e) => {
+      e.stopPropagation(); // Impede que o clique feche o menu imediatamente
+      sidebar.classList.add('active');
+    });
+  }
+
+  // Fechar com o botão X
+  if (btnCloseSidebar) {
+    btnCloseSidebar.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
+  }
+
+  // Fechar clicando fora (no corpo do site)
+  document.addEventListener('click', (e) => {
+    // Se o menu está aberto E o clique NÃO foi dentro da sidebar E NÃO foi no botão de abrir
+    if (sidebar.classList.contains('active') &&
+      !sidebar.contains(e.target) &&
+      e.target !== btnMenuMobile) {
+
+      sidebar.classList.remove('active');
+    }
+  });
+
   // --- 1. DRAG AND DROP LOGIC ---
 
   // Adiciona eventos aos cards que já existem no HTML

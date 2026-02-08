@@ -4,11 +4,28 @@
   width: 280px;
   height: 100%;
   background-color: $bg-surface;
-  border-right: 4px solid $border-color; // Borda grossa lateral
+  border-right: 4px solid $border-color;
   display: flex;
   flex-direction: column;
-  box-shadow: $shadow-neo-lg; // Sombra projetada na lateral
-  z-index: 10;
+  box-shadow: $shadow-neo-lg;
+  z-index: 100; // Aumentei o z-index para ficar acima de tudo no mobile
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); // Animação suave
+
+  // --- COMPORTAMENTO MOBILE (Telas menores que 1024px) ---
+  @media (max-width: 1024px) {
+    position: fixed; // Solta do layout e fica flutuando
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%); // Esconde para a esquerda
+    border-right: 4px solid #000;
+    
+    // Quando a classe .active for adicionada pelo JS (Menu aberto)
+    &.active {
+      transform: translateX(0); // Traz de volta para a tela
+      box-shadow: 0 0 0 100vw rgba(0,0,0,0.7); // Cria um fundo escuro no resto da tela
+    }
+  }
 
   // --- LOGO ---
   .logo-area {
@@ -17,8 +34,15 @@
     border-bottom: 4px solid $border-color;
     display: flex;
     align-items: center;
+    justify-content: space-between; // Ajuste para mobile
     gap: 12px;
     color: #000;
+
+    .logo-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
     .logo-icon {
       background-color: #000;
@@ -38,6 +62,18 @@
       font-size: 24px;
       letter-spacing: -1px;
     }
+
+    // Botão de fechar (só aparece no mobile)
+    .btn-close-sidebar {
+        display: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        
+        @media (max-width: 1024px) {
+            display: block;
+        }
+    }
   }
 
   // --- NAVEGAÇÃO ---
@@ -56,9 +92,7 @@
       border-radius: $radius-sm;
       font-weight: 700;
       transition: all 0.2s ease;
-      border: 2px solid transparent; // Reserva espaço para borda
-
-      // Estado Normal (Cinza)
+      border: 2px solid transparent; 
       color: $text-gray;
       
       &:hover {
@@ -66,7 +100,6 @@
         color: $text-white;
       }
 
-      // Estado Ativo (Estilo Botão Neo)
       &.active {
         background-color: $text-white;
         color: #000;
@@ -87,7 +120,7 @@
 
   // --- SQUAD ATIVO ---
   .active-squad {
-    flex: 1; // Ocupa o espaço restante
+    flex: 1; 
     padding: 24px;
     overflow-y: auto;
 
@@ -137,7 +170,6 @@
           border: 2px solid #000;
         }
 
-        // Bolinha de status
         &::after {
           content: '';
           position: absolute;
@@ -172,7 +204,7 @@
     }
   }
 
-  // --- FOOTER (Configurações) ---
+  // --- FOOTER ---
   .sidebar-footer {
     padding: 24px;
     background-color: $bg-dark;

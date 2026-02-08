@@ -26,10 +26,16 @@
     <div class="app-container">
       <aside class="sidebar">
         <div class="logo-area">
-          <div class="logo-icon">
-            <span class="material-symbols-outlined">dataset</span>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <div class="logo-icon">
+              <span class="material-symbols-outlined">dataset</span>
+            </div>
+            <h1>TaskFlow</h1>
           </div>
-          <h1>TaskFlow</h1>
+
+          <button class="btn-close-sidebar">
+            <span class="material-symbols-outlined">close</span>
+          </button>
         </div>
 
         <nav class="main-nav">
@@ -92,6 +98,10 @@
 
       <main class="board-view">
         <header class="top-bar">
+          <button class="btn-menu-mobile" id="btn-menu-mobile">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
           <div class="sprint-info">
             <h2>Sprint <span class="highlight-blue">#24</span></h2>
             <div class="badge-wrapper">
@@ -112,7 +122,7 @@
             </div>
             <button class="btn-primary" id="btn-add-task">
               <span class="material-symbols-outlined">add</span>
-              NEW TASK
+              <span class="btn-text">NEW TASK</span>
             </button>
           </div>
         </header>

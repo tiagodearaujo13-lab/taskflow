@@ -1,10 +1,9 @@
 // scss/components/_cards.scss
 
 .task-card {
-    background-color: $card-white;
+    background-color: $card-white; // Cor padrão
     border: 2px solid $border-color;
     border-radius: $radius-md;
-    // Sombra dura padrão
     box-shadow: $shadow-neo; 
     padding: 16px;
     margin-bottom: 16px;
@@ -15,33 +14,37 @@
     flex-direction: column;
     gap: 12px;
     position: relative;
-    
-    // Importante: garante que o texto seja legível nos cards coloridos
-    color: #000; 
+    color: #000; // Força texto preto
 
-    // --- EFEITOS DE INTERAÇÃO ---
+    // --- VARIANTES DE COR (Isso faltava para bater com o design) ---
+    &.bg-yellow { background-color: $card-yellow; }
+    &.bg-orange { background-color: $card-orange; }
+    &.bg-purple { background-color: $card-purple; }
+    &.bg-blue   { background-color: $card-blue; }
+    &.bg-pink   { background-color: $card-purple; } // Ajuste se necessário
+
+    // --- INTERAÇÃO ---
     &:hover {
-        transform: translate(-2px, -2px); // Sobe levemente
-        box-shadow: $shadow-neo-lg; // A sombra cresce
+        transform: translate(-2px, -2px);
+        box-shadow: $shadow-neo-lg;
         z-index: 10;
         border-color: #000;
     }
 
     &:active {
         cursor: grabbing;
-        transform: translate(0, 0); // Volta para o lugar (efeito de clique)
-        box-shadow: $shadow-neo-sm; // Sombra diminui
+        transform: translate(0, 0);
+        box-shadow: $shadow-neo-sm;
     }
 
-    // Quando o card está sendo arrastado (Drag & Drop visual)
     &.is-dragging {
         opacity: 0.5;
         border: 2px dashed #000;
-        background-color: #f0f0f0;
+        background-color: #f0f0f0 !important;
         box-shadow: none;
     }
 
-    // --- CABEÇALHO (Tag e Menu) ---
+    // --- CABEÇALHO DO CARD ---
     .card-header {
         display: flex;
         justify-content: space-between;
@@ -55,32 +58,30 @@
             padding: 4px 8px;
             border-radius: 4px;
             border: 1px solid $border-color;
-            background-color: #fff; // Cor padrão
+            background-color: #fff;
             color: #000;
             box-shadow: 2px 2px 0px 0px #000;
 
-            // Variações de Tags
-            &.tag-design { background-color: $card-yellow; }
-            &.tag-backend { background-color: $card-orange; }
-            &.tag-research { background-color: $card-purple; }
+            // Cores das tags
+            &.tag-design { background-color: #000; color: #fff; border: none; }
+            &.tag-backend { background-color: #000; color: #fff; border: none; }
+            &.tag-research { background-color: #000; color: #fff; border: none; }
         }
 
         .btn-more {
             width: 24px;
             height: 24px;
+            border-radius: 4px;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
-            color: #000;
             
-            &:hover {
-                background-color: rgba(0,0,0,0.05);
-            }
+            &:hover { background-color: rgba(0,0,0,0.1); }
         }
     }
 
-    // --- CORPO DO CARD ---
+    // --- CONTEÚDO ---
     .card-body {
         h4 {
             font-family: $font-display;
@@ -88,26 +89,22 @@
             font-weight: 700;
             margin-bottom: 8px;
             line-height: 1.3;
+            color: #000;
         }
 
         p {
             font-size: 13px;
             font-weight: 500;
-            color: rgba(0,0,0,0.7); // Cinza escuro para contraste
+            color: rgba(0,0,0,0.8);
             line-height: 1.5;
-            
-            // Limita a 2 linhas e põe reticências (...)
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            @include truncate-text(2); // Usando o mixin novo
         }
 
-        // Barra de Progresso (opcional dentro do card)
+        // Barra de progresso
         .progress-bar {
             height: 8px;
             width: 100%;
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(255,255,255,0.5);
             border: 1px solid #000;
             border-radius: 4px;
             margin-top: 8px;
@@ -116,35 +113,29 @@
             .fill {
                 height: 100%;
                 background-color: #000;
-                border-right: 1px solid #000;
             }
         }
     }
 
-    // --- RODAPÉ (Avatar e Metadados) ---
+    // --- FOOTER ---
     .card-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 12px;
-        border-top: 2px solid rgba(0,0,0,0.05);
+        border-top: 2px solid rgba(0,0,0,0.1);
         margin-top: auto;
 
         .avatars {
             display: flex;
-            
-            // Sobreposição de avatares
             .avatar-sm {
                 width: 24px;
                 height: 24px;
                 border-radius: 50%;
                 border: 2px solid #000;
-                margin-left: -8px; // Efeito de pilha
+                margin-left: -8px;
                 background-color: #fff;
-                
-                &:first-child {
-                    margin-left: 0;
-                }
+                &:first-child { margin-left: 0; }
             }
         }
 
@@ -155,19 +146,13 @@
             font-size: 11px;
             font-weight: 700;
             color: #000;
-            opacity: 0.6;
-
-            .icon-sm {
-                font-size: 14px;
-            }
-
-            // Estilo se for um ticket (ex: DEV-203)
+            
             &.badge-ticket {
                 background-color: #fff;
                 border: 1px solid #000;
                 padding: 2px 6px;
                 border-radius: 4px;
-                opacity: 1;
+                box-shadow: 1px 1px 0 #000;
             }
         }
     }

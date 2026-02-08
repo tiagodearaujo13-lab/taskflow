@@ -1,0 +1,32 @@
+// scss/_mixins.scss
+
+// Mixin para Flexbox centralizado (usado em botões e ícones)
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Mixin para texto truncado (três pontinhos ...)
+@mixin truncate-text($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Mixin para interações Neo-Brutalist
+@mixin neo-hover {
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+  
+  &:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+}

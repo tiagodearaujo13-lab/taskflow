@@ -1,23 +1,32 @@
-// Fontes
+// _variables.scss
+
+// --- FONTES ---
 $font-main: 'Inter', sans-serif;
 
-// Cores do Background
-$bg-dark: #121212;
-$bg-card: #1e1e1e;
-$bg-hover: #2c2c2c;
+// --- CORES DO SISTEMA ---
+$bg-dark: #121212;       // Fundo da página
+$bg-sidebar: #1E1E1E;    // Fundo da lateral
+$border-color: #000000;  // Cor da borda (Preto puro)
+$text-white: #FFFFFF;
+$text-gray: #A0A0A0;
 
-// Cores de Acento 
-$color-primary: #ccff00;
-$color-blue: #007aff;
-$color-purple:#d500f9;
-$color-orange: #ff9f0a;
-$color-pink: #ff375f;
+// --- CORES NEON (Detalhes) ---
+$color-primary: #0d59f2;      // Azul Forte
+$color-neon-green: #ccff00;   // Verde Limão
+$color-neon-pink: #ff00ff;    // Rosa Choque
+$color-neon-blue: #00ffff;    // Ciano
 
-// Texto
-$text_white: #fff;
-$text-gray: #a0a0a0;
+// --- CORES DOS CARDS (Fundo das tarefas) ---
+$card-yellow: #ffeb3b;
+$card-orange: #ff9800;
+$card-purple: #d0bcff;
+$card-blue: #90caf9;
+$card-white: #ffffff;
 
-// Espaçamentos
-$radios-sm: 8px;
-$radio-md: 12px;
-$dario-lg: 16px;
+// --- SOMBRAS E BORDAS ---
+$shadow-sm: 2px 2px 0px 0px #000000;
+$shadow-md: 4px 4px 0px 0px #000000;
+$shadow-lg: 6px 6px 0px 0px #000000;
+
+$radius-sm: 4px;
+$radius-md: 8px;

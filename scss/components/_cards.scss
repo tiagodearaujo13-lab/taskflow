@@ -1,0 +1,108 @@
+// _cards.scss
+
+.task-card {
+    background-color: $card-white; // Padrão
+    border: 2px solid $border-color;
+    border-radius: $radius-md;
+    padding: 16px;
+    box-shadow: $shadow-md; // A sombra dura
+    cursor: grab;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+
+    // Efeito de hover (ele sobe um pouquinho)
+    &:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: $shadow-lg;
+    }
+
+    &:active {
+        cursor: grabbing;
+        transform: translate(0, 0);
+        box-shadow: $shadow-sm;
+    }
+
+    // Cabeçalho do Card (Tag e Menu)
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .tag {
+            background-color: #000;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-more {
+            background: transparent;
+            color: #000;
+            font-size: 20px;
+            padding: 0 4px;
+            border-radius: 4px;
+            &:hover { background-color: rgba(0,0,0,0.1); }
+        }
+    }
+
+    // Conteúdo
+    .card-body {
+        h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 13px;
+            color: rgba(0,0,0,0.7);
+            font-weight: 500;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; // Limita a 2 linhas
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    // Rodapé (Avatar e Info)
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 2px solid rgba(0,0,0,0.1);
+        padding-top: 12px;
+        margin-top: 4px;
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #000;
+            background-color: #ddd; // Cor provisória se não tiver imagem
+        }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #000;
+        }
+    }
+
+    // Variantes de cores (Classes modificadoras)
+    &.bg-yellow { background-color: $card-yellow; }
+    &.bg-orange { background-color: $card-orange; }
+    &.bg-purple { background-color: $card-purple; }
+    &.bg-blue   { background-color: $card-blue; }
+}

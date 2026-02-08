@@ -1,18 +1,18 @@
 .search-input {
-  background-color: #2c2c2e;
-  color: $text-white;
-  padding: 10px 16px;
-  border-radius: $radius-sm;
-  border: 1px solid transparent;
-  width: 250px;
-  font-size: 14px;
+    background-color: #2C2C2E; // Cinza escuro
+    color: $text-white;
+    padding: 10px 16px;
+    border-radius: $radius-sm;
+    border: 1px solid transparent;
+    width: 250px;
+    font-size: 14px;
 
-  &::placeholder{
-    color: $text-gray;
-  }
+    &::placeholder {
+        color: $text-gray;
+    }
 
-  &:foncus {
-    border-color: $color-blue;
-    background-color: lighten(#2c2c2e, 5%);
-  }
+    &:focus {
+        border-color: $color-blue;
+        background-color: lighten(#2C2C2E, 5%);
+    }
 }

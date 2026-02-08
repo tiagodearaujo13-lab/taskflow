@@ -1,18 +1,100 @@
+// scss/components/_inputs.scss
+
+// --- INPUT DE PESQUISA (Do Header) ---
 .search-input {
-    background-color: #2C2C2E; // Cinza escuro
+    width: 100%;
+    background-color: $bg-dark;
     color: $text-white;
     padding: 10px 16px;
+    padding-right: 40px; // Espaço para o ícone
+    border: 2px solid $border-color;
     border-radius: $radius-sm;
-    border: 1px solid transparent;
-    width: 250px;
+    font-family: $font-main;
+    font-weight: 500;
     font-size: 14px;
+    transition: all 0.2s ease;
 
     &::placeholder {
-        color: $text-gray;
+        color: darken($text-gray, 10%);
     }
 
     &:focus {
-        border-color: $color-blue;
-        background-color: lighten(#2C2C2E, 5%);
+        border-color: $color-neon-pink; // Borda rosa no foco
+        box-shadow: $shadow-neo; // Sombra dura
+        background-color: lighten($bg-dark, 2%);
+    }
+}
+
+// --- INPUTS GERAIS (Do Modal "Nova Tarefa") ---
+.neo-input, 
+.neo-textarea, 
+.neo-select {
+    width: 100%;
+    background-color: #fff; // Fundo claro para inputs de dados
+    color: #000;
+    border: 2px solid $border-color;
+    border-radius: $radius-sm;
+    padding: 12px;
+    font-family: $font-main;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+    outline: none;
+
+    &::placeholder {
+        color: rgba(0,0,0,0.4);
+    }
+
+    &:focus {
+        transform: translate(-2px, -2px);
+        box-shadow: $shadow-neo; // Sombra preta dura
+        border-color: $color-primary; // Azul no foco
+    }
+}
+
+// Estilo específico para Textarea
+.neo-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+// Labels dos formulários
+label {
+    display: block;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 14px;
+    color: $text-white; // Labels em fundo escuro (Modal)
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+// --- CHECKBOX CUSTOMIZADO (Opcional) ---
+.neo-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    
+    &:checked {
+        background-color: $color-neon-green;
+        box-shadow: 2px 2px 0 #000;
+        
+        &::after {
+            content: '✔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            font-weight: bold;
+            color: #000;
+        }
     }
 }

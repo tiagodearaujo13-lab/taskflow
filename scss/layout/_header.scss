@@ -1,43 +1,145 @@
+// scss/layout/_header.scss
+
 .top-bar {
     height: 80px;
+    background-color: $bg-surface;
+    border-bottom: 4px solid $border-color; // Borda grossa inferior
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 32px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    // Sombra para dar profundidade em relação ao board
+    box-shadow: $shadow-neo; 
+    z-index: 5; 
 
+    // --- LADO ESQUERDO: INFO DA SPRINT ---
     .sprint-info {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 24px;
 
         h2 {
-            font-size: 24px;
-            font-weight: 700;
+            font-family: $font-display;
+            font-size: 32px;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            
-            // O detalhe azul no "#24" faremos via JS ou HTML depois
-            color: $text-white; 
+            letter-spacing: -1px;
+            color: $text-white;
+            margin: 0;
+
+            .highlight-blue {
+                color: $color-primary; // O "#24" em azul
+            }
         }
 
-        .badge {
-            font-size: 12px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            
-            &.warning {
-                background-color: rgba($color-primary, 0.15); // Fundo verde transparente
-                color: $color-primary; // Texto verde neon
-                border: 1px solid rgba($color-primary, 0.3);
+        .badge-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background-color: $bg-element;
+            border: 2px solid $border-color;
+            border-radius: 50px; // Formato de pílula
+            box-shadow: $shadow-neo-sm;
+
+            .dot {
+                width: 8px;
+                height: 8px;
+                background-color: $color-neon-green;
+                border-radius: 50%;
+                box-shadow: 0 0 5px $color-neon-green; // Efeito de brilho
+            }
+
+            .text {
+                font-size: 12px;
+                font-weight: 700;
+                color: $text-gray;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
         }
     }
 
+    // --- LADO DIREITO: AÇÕES ---
     .actions {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 24px;
+
+        // Container da Busca
+        .search-wrapper {
+            position: relative;
+            
+            .search-input {
+                width: 280px;
+                padding: 10px 16px;
+                padding-right: 40px; // Espaço para o ícone
+                background-color: $bg-dark;
+                border: 2px solid $border-color;
+                border-radius: $radius-sm;
+                color: $text-white;
+                font-family: $font-main;
+                font-weight: 500;
+                box-shadow: $shadow-neo-sm;
+                transition: all 0.2s;
+
+                &::placeholder {
+                    color: darken($text-gray, 10%);
+                }
+
+                &:focus {
+                    border-color: $color-neon-pink; // Foco rosa neon
+                    box-shadow: $shadow-neo;
+                    outline: none;
+                }
+            }
+
+            .search-icon {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: $text-gray;
+                pointer-events: none; // O clique atravessa o ícone
+                font-size: 20px;
+            }
+        }
+
+        // Estilo específico do botão "NEW TASK" no header
+        #btn-add-task {
+             background-color: $color-primary;
+             color: $text-white;
+             border: 2px solid $border-color;
+             box-shadow: $shadow-neo; // Sombra dura
+             border-radius: $radius-sm;
+             
+             font-family: $font-display;
+             font-weight: 700;
+             font-size: 14px;
+             letter-spacing: 0.5px;
+             text-transform: uppercase;
+             
+             padding: 12px 24px;
+             display: flex;
+             align-items: center;
+             gap: 8px;
+             transition: all 0.15s ease;
+             
+             &:hover {
+                transform: translate(-2px, -2px); // Sobe
+                box-shadow: $shadow-neo-lg; // Sombra aumenta
+                background-color: lighten($color-primary, 5%);
+             }
+             
+             &:active {
+                transform: translate(0, 0); // Desce (clique)
+                box-shadow: $shadow-neo-sm; // Sombra diminui
+             }
+
+             .material-symbols-outlined {
+                font-size: 20px;
+                font-weight: 900; // Ícone mais grosso
+             }
+        }
     }
 }

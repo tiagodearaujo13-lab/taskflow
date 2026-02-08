@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Join the Squad</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+  <body class="auth-page">
+    <a href="index.html" class="btn-back">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Back
+    </a>
+
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="logo-icon">
+            <span class="material-symbols-outlined">dataset</span>
+          </div>
+          <h2>Join the Squad</h2>
+          <p>Create your account and start managing chaos.</p>
+        </div>
+
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              class="neo-input"
+              placeholder="John Doe"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="neo-input"
+              placeholder="name@company.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="neo-input"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-primary btn-block">
+            CREATE ACCOUNT
+            <span class="material-symbols-outlined">rocket_launch</span>
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>Already have an account? <a href="login.html">Login</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("signup-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simula cadastro e vai para o dashboard
+        window.location.href = "dashboard.html";
+      });
+    </script>
+  </body>
+</html>

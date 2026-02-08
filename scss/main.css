@@ -13,7 +13,8 @@ a {
   color: inherit;
 }
 
-button, input {
+button,
+input {
   border: none;
   outline: none;
   font-family: inherit;
@@ -43,12 +44,14 @@ button, input {
   flex-direction: column;
   padding: 24px;
 }
+
 .sidebar .logo {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 40px;
 }
+
 .sidebar .logo .logo-icon {
   width: 40px;
   height: 40px;
@@ -61,6 +64,7 @@ button, input {
   justify-content: center;
   border-radius: 8px;
 }
+
 .sidebar .logo h1 {
   color: #fff;
   font-size: 20px;
@@ -74,4 +78,6 @@ body {
   font-family: "Inter", sans-serif;
   height: 100vh;
   overflow: hidden;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

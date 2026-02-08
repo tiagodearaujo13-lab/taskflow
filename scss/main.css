@@ -1546,3 +1546,137 @@ label {
     transform: translateX(-50%);
   }
 }
+
+/* --- ESTILOS DE AUTENTICAÇÃO (LOGIN/SIGNUP) --- */
+
+.auth-page {
+  background-color: #121212;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 24px;
+}
+
+.auth-page .btn-back {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #A0A0A0;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.auth-page .btn-back:hover {
+  color: #FFFFFF;
+  transform: translateX(-4px);
+}
+
+.auth-page .auth-container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 2;
+}
+
+.auth-page .auth-card {
+  background-color: #1E1E1E;
+  border: 2px solid #000000;
+  box-shadow: 6px 6px 0px 0px #000000;
+  padding: 40px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.auth-page .auth-card .auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-page .auth-card .auth-header .logo-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #ccff00;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0px 0px #000000;
+  margin-bottom: 16px;
+}
+
+.auth-page .auth-card .auth-header .logo-icon span {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.auth-page .auth-card .auth-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #FFFFFF;
+}
+
+.auth-page .auth-card .auth-header p {
+  color: #A0A0A0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.auth-page .auth-card form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-page .auth-card form .form-group label {
+  margin-bottom: 8px;
+  display: block;
+  font-size: 12px;
+}
+
+.auth-page .auth-card form .btn-block {
+  width: 100%;
+  justify-content: center;
+  padding: 14px;
+  font-size: 16px;
+  margin-top: 16px;
+  text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.auth-page .auth-card form .btn-block:hover {
+  box-shadow: 6px 6px 0px 0px #000000;
+  transform: translate(-2px, -2px);
+}
+
+.auth-page .auth-card .auth-footer {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14px;
+  color: #A0A0A0;
+  border-top: 2px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+}
+
+.auth-page .auth-card .auth-footer a {
+  color: #00ffff;
+  font-weight: 700;
+}
+
+.auth-page .auth-card .auth-footer a:hover {
+  text-decoration: underline;
+}

@@ -1,32 +1,39 @@
 // _variables.scss
 
-// --- FONTES ---
-$font-main: 'Inter', sans-serif;
+//  FONTES
+$font-display: 'Space Grotesk', sans-serif; // Títulos
+$font-main: 'Inter', sans-serif;            // Texto corrido
 
-// --- CORES DO SISTEMA ---
-$bg-dark: #121212;       // Fundo da página
-$bg-sidebar: #1E1E1E;    // Fundo da lateral
-$border-color: #000000;  // Cor da borda (Preto puro)
+//  CORES DO SISTEMA (Baseadas no Code.html) 
+$bg-dark: #121212;       // Fundo principal
+$bg-surface: #1E1E1E;    // Sidebar e Headers
+$bg-element: #2A2A2A;    // Elementos internos
+$border-color: #000000;  // Preto puro
+
+// TEXTO 
 $text-white: #FFFFFF;
 $text-gray: #A0A0A0;
 
-// --- CORES NEON (Detalhes) ---
-$color-primary: #0d59f2;      // Azul Forte
+// CORES NEON (Destaques)
+$color-primary: #0d59f2;      // Azul Royal
 $color-neon-green: #ccff00;   // Verde Limão
 $color-neon-pink: #ff00ff;    // Rosa Choque
 $color-neon-blue: #00ffff;    // Ciano
 
-// --- CORES DOS CARDS (Fundo das tarefas) ---
+// CORES DOS CARDS 
 $card-yellow: #ffeb3b;
 $card-orange: #ff9800;
 $card-purple: #d0bcff;
 $card-blue: #90caf9;
 $card-white: #ffffff;
 
-// --- SOMBRAS E BORDAS ---
-$shadow-sm: 2px 2px 0px 0px #000000;
-$shadow-md: 4px 4px 0px 0px #000000;
-$shadow-lg: 6px 6px 0px 0px #000000;
+// SOMBRAS NEO-BRUTALIST (Sem blur) 
+$shadow-neo-sm: 2px 2px 0px 0px #000000;
+$shadow-neo:    4px 4px 0px 0px #000000;
+$shadow-neo-lg: 6px 6px 0px 0px #000000;
 
+// BORDAS E RADIUS 
+$border-width: 2px;
 $radius-sm: 4px;
 $radius-md: 8px;
+$radius-lg: 12px;

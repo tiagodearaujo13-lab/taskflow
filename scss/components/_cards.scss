@@ -1,22 +1,30 @@
 // _cards.scss
 
 .task-card {
-    background-color: $card-white; // Padrão
+    // Fundo padrão branco, se não tiver outra cor
+    background-color: $card-white; 
+    
+    // O estilo Brutalista (Borda grossa e sombra dura)
     border: 2px solid $border-color;
     border-radius: $radius-md;
+    box-shadow: $shadow-md;
+    
     padding: 16px;
-    box-shadow: $shadow-md; // A sombra dura
+    margin-bottom: 12px; // Espaço entre um card e outro
     cursor: grab;
     transition: all 0.2s ease;
+    
     display: flex;
     flex-direction: column;
     gap: 12px;
     position: relative;
+    color: #000; // Texto sempre preto dentro dos cards coloridos
 
-    // Efeito de hover (ele sobe um pouquinho)
+    // Efeito Hover (Levanta o card)
     &:hover {
         transform: translate(-2px, -2px);
         box-shadow: $shadow-lg;
+        z-index: 10;
     }
 
     &:active {
@@ -25,82 +33,75 @@
         box-shadow: $shadow-sm;
     }
 
-    // Cabeçalho do Card (Tag e Menu)
+    // Cabeçalho (Tag preta)
     .card-header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
+        margin: 0; // Remove margens extras
+        padding: 0; // Remove paddings extras
+        border: none; // Remove bordas herdadas
+        background: transparent; // Remove fundos herdados
+        box-shadow: none; // Remove sombras herdadas
 
         .tag {
             background-color: #000;
             color: #fff;
             font-size: 10px;
-            font-weight: 700;
+            font-weight: 800;
             padding: 4px 8px;
             border-radius: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-
+        
         .btn-more {
-            background: transparent;
-            color: #000;
-            font-size: 20px;
-            padding: 0 4px;
-            border-radius: 4px;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 0 5px;
             &:hover { background-color: rgba(0,0,0,0.1); }
         }
     }
 
-    // Conteúdo
     .card-body {
         h4 {
             font-size: 16px;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 8px;
+            font-weight: 800;
+            margin-bottom: 6px;
             line-height: 1.2;
         }
-
         p {
             font-size: 13px;
-            color: rgba(0,0,0,0.7);
             font-weight: 500;
-            display: -webkit-box;
-            -webkit-line-clamp: 2; // Limita a 2 linhas
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            opacity: 0.8;
+            line-height: 1.4;
         }
     }
 
-    // Rodapé (Avatar e Info)
     .card-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-top: 10px;
         border-top: 2px solid rgba(0,0,0,0.1);
-        padding-top: 12px;
         margin-top: 4px;
-
+        
         .avatar {
             width: 28px;
             height: 28px;
             border-radius: 50%;
             border: 2px solid #000;
-            background-color: #ddd; // Cor provisória se não tiver imagem
         }
-
+        
         .meta-info {
+            font-size: 12px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 4px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #000;
         }
     }
 
-    // Variantes de cores (Classes modificadoras)
+    // --- CORES DOS CARDS ---
     &.bg-yellow { background-color: $card-yellow; }
     &.bg-orange { background-color: $card-orange; }
     &.bg-purple { background-color: $card-purple; }

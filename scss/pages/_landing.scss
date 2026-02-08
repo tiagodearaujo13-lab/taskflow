@@ -347,6 +347,120 @@
     }
 }
 
+// --- PRICING SECTION (NOVO) ---
+.pricing-section {
+    padding: 100px 24px;
+    background-color: $bg-surface; // Fundo levemente mais claro
+    border-top: 4px solid #000;
+    border-bottom: 4px solid #000;
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+        h2 {
+            font-family: $font-display;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            .highlight-neon { color: $color-neon-blue; }
+        }
+    }
+
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .pricing-card {
+            background-color: $bg-dark;
+            border: 4px solid #000;
+            padding: 40px 32px;
+            box-shadow: $shadow-neo;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.2s;
+
+            &:hover { transform: translate(-4px, -4px); box-shadow: $shadow-neo-lg; }
+
+            // Card de Destaque (Meio)
+            &.best-value {
+                background-color: #fff;
+                color: #000;
+                transform: scale(1.05);
+                z-index: 2;
+                border-color: #000;
+                
+                .price { color: #000; span { color: #666; } }
+                ul li::before { color: $color-primary; }
+                .badge {
+                    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+                    background-color: $color-neon-pink; color: #000;
+                    font-weight: 800; padding: 4px 12px; border: 2px solid #000;
+                    text-transform: uppercase; font-size: 12px;
+                }
+                
+                &:hover { transform: scale(1.05) translate(-4px, -4px); }
+            }
+
+            h3 {
+                font-family: $font-display;
+                font-size: 1.5rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                margin-bottom: 16px;
+            }
+
+            .price {
+                font-size: 3.5rem;
+                font-weight: 900;
+                margin-bottom: 16px;
+                font-family: $font-display;
+                span { font-size: 1rem; color: $text-gray; font-weight: 600; }
+            }
+
+            p { font-size: 0.9rem; margin-bottom: 32px; color: $text-gray; font-weight: 500; }
+
+            ul {
+                list-style: none;
+                flex: 1;
+                margin-bottom: 32px;
+                li {
+                    margin-bottom: 12px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-weight: 600;
+                    &::before { content: '✔'; color: $color-neon-green; font-weight: 900; }
+                }
+            }
+
+            .btn-price {
+                width: 100%;
+                padding: 14px;
+                text-align: center;
+                border: 2px solid #000;
+                font-weight: 800;
+                text-transform: uppercase;
+                background: transparent;
+                color: inherit;
+                cursor: pointer;
+                transition: all 0.2s;
+
+                &:hover { background-color: $color-neon-green; color: #000; }
+                
+                &.btn-fill {
+                    background-color: $color-primary;
+                    color: #fff;
+                    &:hover { background-color: lighten($color-primary, 5%); }
+                }
+            }
+        }
+    }
+}
+
 // Animação do Marquee
 @keyframes marquee {
     0% { transform: translateX(0); }

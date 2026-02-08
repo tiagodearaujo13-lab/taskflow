@@ -1,114 +1,142 @@
+// scss/layout/_grid.scss
+
 .app-container {
     display: flex;
     height: 100vh;
-    width: 100vw; // CORREÇÃO: vw (viewport width), não vh
+    width: 100vw;
     background-color: $bg-dark;
-    overflow: hidden; // Impede scroll na página inteira
+    overflow: hidden; // Impede scroll na página inteira (scroll é interno)
 }
 
 .board-view {
     flex: 1; // Ocupa todo o espaço restante ao lado da sidebar
     display: flex;
     flex-direction: column;
-    min-width: 0; // Truque do Flexbox para evitar que o conteúdo estoure
+    min-width: 0; // Previne que o flexbox estoure o layout
     height: 100%;
+    position: relative;
+    
+    // Fundo abstrato (Pattern de pontos)
+    background-image: radial-gradient(#333 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
+// --- KANBAN BOARD (Área das Colunas) ---
 .kanban-board {
     display: flex;
-    gap: 24px; // Espaço entre colunas
+    gap: 32px; // Espaço entre colunas
     padding: 32px;
     height: 100%;
     
-    // Configuração do Scroll Horizontal do Board
+    // Scroll Horizontal
     overflow-x: auto; 
     overflow-y: hidden;
-    align-items: flex-start; // Alinha colunas ao topo
+    align-items: flex-start;
 
-    // Estilização da Barra de Rolagem (Estilo Neo-Brutalist)
+    // Scrollbar Neo-Brutalist
     &::-webkit-scrollbar {
-        height: 12px;
+        height: 16px;
     }
     &::-webkit-scrollbar-track {
-        background: $bg-sidebar;
-        border-top: 2px solid #000;
+        background: $bg-surface;
+        border-top: $border-width solid $border-color;
     }
     &::-webkit-scrollbar-thumb {
         background: #333;
-        border: 2px solid #000;
+        border: $border-width solid $border-color;
         &:hover { background: #555; }
     }
-    
+
+    // --- COLUNA INDIVIDUAL ---
     .column {
-        flex: 0 0 320px; // Largura FIXA: Não encolhe nem estica
-        max-width: 320px;
+        flex: 0 0 350px; // Largura FIXA (não encolhe)
+        max-width: 350px;
         height: 100%;
         display: flex;
         flex-direction: column;
-        
-        // --- CABEÇALHO DA COLUNA ---
+
+        // Cabeçalho da Coluna
         .column-header {
-            background-color: $bg-sidebar;
+            background-color: $bg-surface;
             padding: 16px;
-            margin-bottom: 20px; // Afasta dos cards
+            margin-bottom: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             
-            // O estilo Neo-Brutalist: Bordas grossas e sombra dura
-            border: 2px solid #000;
-            box-shadow: $shadow-md; 
+            // Estilo Neo-Brutalist
+            border: $border-width solid $border-color;
+            box-shadow: $shadow-neo; 
             
-            font-family: $font-main;
+            // Tipografia
+            font-family: $font-display;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            
-            // Variações de Cor (Neon)
-            &.border-yellow { 
-                color: $color-neon-green; 
-                border-color: $color-neon-green; 
+            position: relative;
+
+            // Variações de Cor das Bordas (Baseado nas classes do HTML)
+            &.border-neon-green { 
+                border-bottom: 4px solid $color-neon-green;
+                color: $color-neon-green;
+                .status-dot { background-color: $color-neon-green; }
             }
-            &.border-pink { 
-                color: $color-neon-pink; 
-                border-color: $color-neon-pink; 
+            &.border-neon-pink { 
+                border-bottom: 4px solid $color-neon-pink;
+                color: $color-neon-pink;
+                .status-dot { background-color: $color-neon-pink; }
             }
-            &.border-blue { 
-                color: $color-primary; 
-                border-color: $color-primary; 
+            &.border-neon-blue { 
+                border-bottom: 4px solid $color-primary;
+                color: $color-primary;
+                .status-dot { background-color: $color-primary; }
+            }
+
+            .header-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .status-dot {
+                width: 12px;
+                height: 12px;
+                border: 2px solid #000;
+                border-radius: 50%;
             }
 
             .count {
-                background-color: #000;
-                color: inherit; // Pega a cor do pai (verde/rosa/azul)
+                background-color: $bg-dark;
+                color: $text-white;
                 padding: 4px 10px;
                 border-radius: 4px;
                 font-family: monospace;
                 font-size: 14px;
+                border: 1px solid #333;
             }
         }
 
-        // --- LISTA DE TAREFAS (Scroll Interno) ---
+        // Área dos Cards (Scroll Vertical Interno)
         .task-list {
-            flex: 1; // Ocupa a altura restante da coluna
-            overflow-y: auto; // Scroll vertical SÓ aqui dentro
-            padding-right: 8px; // Espaço para não colar na barra de rolagem
-            padding-bottom: 32px; // Espaço no final
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 8px;
+            padding-bottom: 40px;
             display: flex;
             flex-direction: column;
-            gap: 16px; // Espaço entre os cards
+            gap: 16px;
 
-            // Scrollbar fininha para a lista
+            // Scrollbar interna fina
             &::-webkit-scrollbar {
-                width: 6px;
+                width: 8px;
             }
             &::-webkit-scrollbar-track {
                 background: transparent;
             }
             &::-webkit-scrollbar-thumb {
                 background: #444;
-                border-radius: 3px;
+                border-radius: 4px;
             }
         }
     }

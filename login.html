@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+  <body class="auth-page">
+    <a href="index.html" class="btn-back">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Back
+    </a>
+
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="logo-icon">
+            <span class="material-symbols-outlined">dataset</span>
+          </div>
+          <h2>Welcome Back</h2>
+          <p>Enter your credentials to access the chaos.</p>
+        </div>
+
+        <form id="login-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="neo-input"
+              placeholder="name@company.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="neo-input"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn-primary btn-block">
+            ENTER DASHBOARD
+            <span class="material-symbols-outlined">login</span>
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simula login bem sucedido
+        window.location.href = "dashboard.html";
+      });
+    </script>
+  </body>
+</html>

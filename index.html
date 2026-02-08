@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskFlow | Dashboard</title>
+    <title>TaskFlow | Manage Chaos Like a Boss</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -22,225 +22,268 @@
 
     <link rel="stylesheet" href="scss/main.css" />
   </head>
-  <body>
-    <div class="app-container">
-      <aside class="sidebar">
+  <body class="landing-page">
+    <nav class="landing-nav">
+      <div class="nav-container">
         <div class="logo-area">
-          <div style="display: flex; align-items: center; gap: 12px">
-            <div class="logo-icon">
-              <span class="material-symbols-outlined">dataset</span>
-            </div>
-            <h1>TaskFlow</h1>
+          <div class="logo-icon">
+            <span class="material-symbols-outlined">dataset</span>
           </div>
-
-          <button class="btn-close-sidebar">
-            <span class="material-symbols-outlined">close</span>
-          </button>
+          <h1>TaskFlow</h1>
         </div>
 
-        <nav class="main-nav">
-          <a href="#" class="nav-item active">
-            <span class="material-symbols-outlined">dashboard</span>
-            <span>Board View</span>
-          </a>
-          <a href="#" class="nav-item">
-            <span class="material-symbols-outlined">list_alt</span>
-            <span>Backlog</span>
-          </a>
-          <a href="#" class="nav-item">
-            <span class="material-symbols-outlined">analytics</span>
-            <span>Reports</span>
-          </a>
-        </nav>
-
-        <div class="active-squad">
-          <h3>
-            <span class="material-symbols-outlined">group</span>
-            Active Squad
-          </h3>
-
-          <div class="squad-list">
-            <div class="squad-member">
-              <div class="avatar-wrapper neon-green">
-                <img
-                  src="https://ui-avatars.com/api/?name=Sarah+J&background=random"
-                  alt="Sarah J"
-                />
-              </div>
-              <div class="member-info">
-                <span class="name">Sarah J.</span>
-                <span class="status">Designing Hero...</span>
-              </div>
-            </div>
-
-            <div class="squad-member">
-              <div class="avatar-wrapper neon-pink">
-                <img
-                  src="https://ui-avatars.com/api/?name=Mike+R&background=random"
-                  alt="Mike R"
-                />
-              </div>
-              <div class="member-info">
-                <span class="name">Mike R.</span>
-                <span class="status">Fixing API Bug...</span>
-              </div>
-            </div>
-          </div>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#pricing">Pricing</a>
         </div>
 
-        <div class="sidebar-footer">
-          <button class="btn-settings">
-            <span class="material-symbols-outlined">settings</span>
-            Settings
-          </button>
+        <div class="nav-actions">
+          <a href="login.html" class="btn-link">Login</a>
+          <a href="signup.html" class="btn-primary btn-cta"> GET STARTED </a>
         </div>
-      </aside>
+      </div>
+    </nav>
 
-      <main class="board-view">
-        <header class="top-bar">
-          <button class="btn-menu-mobile" id="btn-menu-mobile">
-            <span class="material-symbols-outlined">menu</span>
-          </button>
+    <header class="hero-section">
+      <div class="hero-bg-elements">
+        <div class="blob blob-blue"></div>
+        <div class="blob blob-pink"></div>
+      </div>
 
-          <div class="sprint-info">
-            <h2>Sprint <span class="highlight-blue">#24</span></h2>
-            <div class="badge-wrapper">
-              <span class="dot"></span>
-              <span class="text">4 days left</span>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          MANAGE TASKS <br />
+          LIKE A <span class="highlight-neon">BOSS</span>
+        </h1>
+        <p class="hero-subtitle">
+          Stop juggling chaos. TaskFlow gives you the brutal simplicity you need
+          to ship products faster than your caffeine addiction.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="signup.html" class="btn-mega btn-pink"> TRY FOR FREE </a>
+          <a href="dashboard.html" class="btn-mega btn-white">
+            <span class="material-symbols-outlined">play_circle</span>
+            LIVE DEMO
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="mockup-card rotate-right">
+          <div class="card-top">
+            <span class="badge-black">PRIORITY: HIGH</span>
+            <div class="status-dot red"></div>
+          </div>
+          <div class="lines">
+            <div class="line w-full"></div>
+            <div class="line w-80"></div>
+            <div class="line w-60"></div>
+          </div>
+          <div class="card-bottom">
+            <div class="tag-done">
+              <span class="material-symbols-outlined">check</span>
+              DONE
             </div>
+            <span class="material-symbols-outlined arrow">arrow_forward</span>
           </div>
+        </div>
+      </div>
+    </header>
 
-          <div class="actions">
-            <div class="search-wrapper">
-              <input
-                type="text"
-                class="search-input"
-                id="search-input"
-                placeholder="Search tasks..."
-              />
-              <span class="material-symbols-outlined search-icon">search</span>
-            </div>
-            <button class="btn-primary" id="btn-add-task">
-              <span class="material-symbols-outlined">add</span>
-              <span class="btn-text">NEW TASK</span>
-            </button>
-          </div>
-        </header>
-
-        <section class="kanban-board" id="board">
-          <div class="column" id="col-todo">
-            <header class="column-header border-neon-green">
-              <div class="header-title">
-                <span class="status-dot green"></span>
-                <span>TO DO</span>
-              </div>
-              <span class="count" id="count-todo">5</span>
-            </header>
-
-            <div class="task-list" id="todo-list">
-              <article class="task-card bg-yellow" draggable="true" id="task-1">
-                <div class="card-header">
-                  <span class="tag tag-design">Design</span>
-                  <button class="btn-more">
-                    <span class="material-symbols-outlined">more_horiz</span>
-                  </button>
-                </div>
-                <div class="card-body">
-                  <h4>Homepage Redesign</h4>
-                  <p>Create new high-fidelity mockups for the landing page.</p>
-                </div>
-                <footer class="card-footer">
-                  <div class="avatars">
-                    <img
-                      src="https://ui-avatars.com/api/?name=Sarah+J"
-                      class="avatar-sm"
-                    />
-                  </div>
-                  <div class="meta-info">
-                    <span class="material-symbols-outlined icon-sm"
-                      >attach_file</span
-                    >
-                    <span>2</span>
-                  </div>
-                </footer>
-              </article>
-            </div>
-          </div>
-
-          <div class="column" id="col-progress">
-            <header class="column-header border-neon-pink">
-              <div class="header-title">
-                <span class="status-dot pink"></span>
-                <span>IN PROGRESS</span>
-              </div>
-              <span class="count" id="count-progress">3</span>
-            </header>
-
-            <div class="task-list" id="inprogress-list">
-              <article class="task-card bg-orange" draggable="true" id="task-2">
-                <div class="card-header">
-                  <span class="tag tag-backend">Backend</span>
-                  <button class="btn-more">
-                    <span class="material-symbols-outlined">more_horiz</span>
-                  </button>
-                </div>
-                <div class="card-body">
-                  <h4>API Integration</h4>
-                  <p>Implement GET/POST endpoints for user profile.</p>
-                  <div class="progress-bar">
-                    <div class="fill" style="width: 60%"></div>
-                  </div>
-                </div>
-                <footer class="card-footer">
-                  <div class="avatars">
-                    <img
-                      src="https://ui-avatars.com/api/?name=Mike+R"
-                      class="avatar-sm"
-                    />
-                  </div>
-                  <div class="meta-info badge-ticket">
-                    <span>DEV-203</span>
-                  </div>
-                </footer>
-              </article>
-            </div>
-          </div>
-
-          <div class="column" id="col-done">
-            <header class="column-header border-neon-blue">
-              <div class="header-title">
-                <span class="status-dot blue"></span>
-                <span>DONE</span>
-              </div>
-              <span class="count" id="count-done">0</span>
-            </header>
-
-            <div class="task-list" id="done-list"></div>
-          </div>
-        </section>
-      </main>
-    </div>
-
-    <div class="modal-overlay hidden" id="task-modal">
-      <div class="modal-content">
-        <header class="modal-header">
-          <h2>New Task</h2>
-          <button class="btn-close" id="btn-close-modal">
-            <span class="material-symbols-outlined">close</span>
-          </button>
-        </header>
-        <form id="task-form">
-          <div class="form-group">
-            <label>Title</label>
-            <input type="text" class="neo-input" placeholder="Task title..." />
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn-primary">Create Task</button>
-          </div>
-        </form>
+    <div class="marquee-strip">
+      <div class="marquee-content">
+        <span
+          >NO BLOATWARE • LIGHTNING FAST • NEO-BRUTALISM • NO BS • SHIP FASTER
+          •</span
+        >
+        <span
+          >NO BLOATWARE • LIGHTNING FAST • NEO-BRUTALISM • NO BS • SHIP FASTER
+          •</span
+        >
+        <span
+          >NO BLOATWARE • LIGHTNING FAST • NEO-BRUTALISM • NO BS • SHIP FASTER
+          •</span
+        >
+        <span
+          >NO BLOATWARE • LIGHTNING FAST • NEO-BRUTALISM • NO BS • SHIP FASTER
+          •</span
+        >
       </div>
     </div>
 
-    <script type="module" src="js/app.js"></script>
+    <section class="features-section" id="features">
+      <div class="section-header">
+        <h2>WHY USE TASKFLOW?</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card border-green">
+          <div class="icon-box bg-green">
+            <span class="material-symbols-outlined">rocket_launch</span>
+          </div>
+          <h3>Insane Speed</h3>
+          <p>
+            Built with zero bloat. Load your boards instantly and drag cards
+            without any lag. Faster than your thought process.
+          </p>
+        </div>
+
+        <div class="feature-card border-cyan">
+          <div class="icon-box bg-cyan">
+            <span class="material-symbols-outlined">tune</span>
+          </div>
+          <h3>Total Control</h3>
+          <p>
+            Customize every column, tag, and workflow. Make the tool work for
+            you, not the other way around.
+          </p>
+        </div>
+
+        <div class="feature-card border-pink">
+          <div class="icon-box bg-pink">
+            <span class="material-symbols-outlined">visibility</span>
+          </div>
+          <h3>Visual Clarity</h3>
+          <p>
+            High contrast, bold colors, and zero distractions. See exactly what
+            needs to be done at a glance. Brutally clear.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps-section" id="about">
+      <div class="section-container">
+        <h2 class="section-title">MASTER THE FLOW</h2>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-number">1</span>
+            <h4>Create Board</h4>
+            <p>
+              Set up your workspace in seconds. Name it, pick a color, and go.
+            </p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">2</span>
+            <h4>Add Tasks</h4>
+            <p>Dump your brain. Create cards for everything you need to do.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">3</span>
+            <h4>Drag & Drop</h4>
+            <p>Move things to 'Done'. Feel the dopamine hit. Repeat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section">
+      <div class="section-header">
+        <h2>LOVED BY <span class="highlight-pink">BUILDERS</span></h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card bg-white">
+          <div class="user-info">
+            <img
+              src="https://ui-avatars.com/api/?name=Sarah+J&background=random"
+              alt="User"
+              class="avatar"
+            />
+            <div>
+              <h5>Sarah Jenkins</h5>
+              <small>Product Manager</small>
+            </div>
+          </div>
+          <p>
+            "TaskFlow is ugly in the best way possible. It forces you to focus
+            on the work. My team's productivity doubled."
+          </p>
+        </div>
+        <div class="review-card bg-yellow">
+          <div class="user-info">
+            <img
+              src="https://ui-avatars.com/api/?name=Mike+R&background=random"
+              alt="User"
+              class="avatar"
+            />
+            <div>
+              <h5>Mike Ross</h5>
+              <small>Lead Dev</small>
+            </div>
+          </div>
+          <p>
+            "Finally, a tool that doesn't feel like enterprise software
+            bloatware. Simple, fast, and aggressive."
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="faq-container">
+        <h2>FAQ</h2>
+
+        <details class="faq-item">
+          <summary>Is it really free?</summary>
+          <div class="faq-content">
+            Yes. The core features are free forever for up to 5 users. We tax
+            the big corporations, not the startups.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I import from Trello?</summary>
+          <div class="faq-content">
+            Absolutely. We have a one-click import tool that sucks your data out
+            of their boring servers and into our vibrant ones.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is there a mobile app?</summary>
+          <div class="faq-content">
+            Currently in development. For now, our responsive web view works
+            perfectly on your phone.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <footer class="landing-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-box">
+            <span class="material-symbols-outlined">dataset</span>
+          </div>
+          <h2>TASKFLOW</h2>
+        </div>
+
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="#pricing">Pricing</a>
+          <a href="signup.html">Get Started</a>
+        </div>
+
+        <div class="footer-copy">
+          <p>© 2026 TaskFlow Inc. Open Source Project.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Pequeno script inline apenas para a landing page
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
   </body>
 </html>

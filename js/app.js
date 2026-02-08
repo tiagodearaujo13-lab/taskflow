@@ -3,6 +3,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('TaskFlow System Initialized!');
 
+  // Verificação
+  if (!document.getElementById('board')) {
+    console.log('Landing Page detected. Dashboard scripts skipped.');
+
+    return;
+  }
+
   // --- ELEMENTOS DO DOM ---
   const draggables = document.querySelectorAll('.task-card');
   const columns = document.querySelectorAll('.task-list');

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskFlow | Backlog</title>
+    <title>TaskFlow | Product Backlog</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,6 +69,18 @@
                 <span class="status">Designing...</span>
               </div>
             </div>
+            <div class="squad-member">
+              <div class="avatar-wrapper neon-pink">
+                <img
+                  src="https://ui-avatars.com/api/?name=Mike+R&background=random"
+                  alt="User"
+                />
+              </div>
+              <div class="member-info">
+                <span class="name">Mike R.</span>
+                <span class="status">Coding...</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -110,37 +122,26 @@
           </div>
         </header>
 
-        <section class="kanban-board" style="display: block; overflow-y: auto">
-          <div
-            style="
-              max-width: 800px;
-              margin: 0 auto;
-              display: flex;
-              flex-direction: column;
-              gap: 16px;
-            "
-          >
-            <article
-              class="task-card bg-white"
-              style="
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-              "
-            >
-              <div style="display: flex; gap: 16px; align-items: center">
-                <span class="material-symbols-outlined" style="color: #ccc"
+        <section class="backlog-container">
+          <div class="backlog-list">
+            <article class="backlog-card bg-white">
+              <div class="card-left">
+                <span class="material-symbols-outlined drag-handle"
                   >drag_indicator</span
                 >
-                <div>
+                <div class="card-content">
                   <h4>User Authentication Flow</h4>
-                  <p style="margin: 0">
-                    Implement JWT tokens and refresh logic.
-                  </p>
+                  <p>Implement JWT tokens, refresh logic and secure cookies.</p>
                 </div>
               </div>
-              <div style="display: flex; align-items: center; gap: 16px">
+              <div class="card-right">
                 <span class="tag tag-backend">Backend</span>
+                <div class="meta-date">
+                  <span class="material-symbols-outlined icon-sm"
+                    >calendar_today</span
+                  >
+                  <span>Oct 24</span>
+                </div>
                 <div class="avatars">
                   <img
                     src="https://ui-avatars.com/api/?name=Mike+R"
@@ -153,52 +154,77 @@
               </div>
             </article>
 
-            <article
-              class="task-card bg-white"
-              style="
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-              "
-            >
-              <div style="display: flex; gap: 16px; align-items: center">
-                <span class="material-symbols-outlined" style="color: #ccc"
+            <article class="backlog-card bg-white">
+              <div class="card-left">
+                <span class="material-symbols-outlined drag-handle"
                   >drag_indicator</span
                 >
-                <div>
+                <div class="card-content">
                   <h4>Dark Mode Toggle</h4>
-                  <p style="margin: 0">
-                    Create switch in settings for dark/light mode.
+                  <p>
+                    Create switch in settings for system-wide dark/light mode.
                   </p>
                 </div>
               </div>
-              <div style="display: flex; align-items: center; gap: 16px">
+              <div class="card-right">
                 <span class="tag tag-design">Design</span>
+                <div class="meta-date">
+                  <span class="material-symbols-outlined icon-sm"
+                    >calendar_today</span
+                  >
+                  <span>Oct 25</span>
+                </div>
+                <div class="avatars">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Sarah+J"
+                    class="avatar-sm"
+                  />
+                </div>
                 <button class="btn-more">
                   <span class="material-symbols-outlined">more_vert</span>
                 </button>
               </div>
             </article>
 
-            <article
-              class="task-card bg-white"
-              style="
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-              "
-            >
-              <div style="display: flex; gap: 16px; align-items: center">
-                <span class="material-symbols-outlined" style="color: #ccc"
+            <article class="backlog-card bg-yellow">
+              <div class="card-left">
+                <span class="material-symbols-outlined drag-handle"
                   >drag_indicator</span
                 >
-                <div>
-                  <h4>Payment Gateway</h4>
-                  <p style="margin: 0">Integrate Stripe checkout session.</p>
+                <div class="card-content">
+                  <h4>Payment Gateway Integration</h4>
+                  <p>Connect Stripe API for subscription handling.</p>
                 </div>
               </div>
-              <div style="display: flex; align-items: center; gap: 16px">
+              <div class="card-right">
                 <span class="tag tag-backend">Backend</span>
+                <div class="meta-date">
+                  <span class="material-symbols-outlined icon-sm"
+                    >priority_high</span
+                  >
+                  <span>High</span>
+                </div>
+                <div class="avatars">
+                  <div class="avatar-sm empty">+</div>
+                </div>
+                <button class="btn-more">
+                  <span class="material-symbols-outlined">more_vert</span>
+                </button>
+              </div>
+            </article>
+
+            <article class="backlog-card bg-white">
+              <div class="card-left">
+                <span class="material-symbols-outlined drag-handle"
+                  >drag_indicator</span
+                >
+                <div class="card-content">
+                  <h4>Mobile Responsive Fixes</h4>
+                  <p>Fix sidebar overlap on iPhone 14 Pro Max.</p>
+                </div>
+              </div>
+              <div class="card-right">
+                <span class="tag tag-design">Frontend</span>
                 <div class="avatars">
                   <img
                     src="https://ui-avatars.com/api/?name=Alex+T"

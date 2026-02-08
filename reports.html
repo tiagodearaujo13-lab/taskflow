@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow | Reports</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="logo-area">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <div class="logo-icon">
+              <span class="material-symbols-outlined">dataset</span>
+            </div>
+            <h1>TaskFlow</h1>
+          </div>
+          <button class="btn-close-sidebar">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <nav class="main-nav">
+          <a href="dashboard.html" class="nav-item">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span>Board View</span>
+          </a>
+          <a href="backlog.html" class="nav-item">
+            <span class="material-symbols-outlined">list_alt</span>
+            <span>Backlog</span>
+          </a>
+          <a href="reports.html" class="nav-item active">
+            <span class="material-symbols-outlined">analytics</span>
+            <span>Reports</span>
+          </a>
+        </nav>
+
+        <div class="active-squad">
+          <h3>
+            <span class="material-symbols-outlined">group</span>
+            Active Squad
+          </h3>
+          <div class="squad-list">
+            <div class="squad-member">
+              <div class="avatar-wrapper neon-green">
+                <img
+                  src="https://ui-avatars.com/api/?name=Sarah+J&background=random"
+                  alt="User"
+                />
+              </div>
+              <div class="member-info">
+                <span class="name">Sarah J.</span>
+                <span class="status">Designing...</span>
+              </div>
+            </div>
+            <div class="squad-member">
+              <div class="avatar-wrapper neon-pink">
+                <img
+                  src="https://ui-avatars.com/api/?name=Mike+R&background=random"
+                  alt="User"
+                />
+              </div>
+              <div class="member-info">
+                <span class="name">Mike R.</span>
+                <span class="status">Coding...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <a href="settings.html" class="btn-settings">
+            <span class="material-symbols-outlined">settings</span>
+            Settings
+          </a>
+        </div>
+      </aside>
+
+      <main class="board-view">
+        <header class="top-bar">
+          <button class="btn-menu-mobile" id="btn-menu-mobile">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
+          <div class="sprint-info">
+            <h2>Team <span class="highlight-blue">Performance</span></h2>
+          </div>
+
+          <div class="actions">
+            <div class="badge-wrapper" style="margin-right: 16px">
+              <span class="dot"></span>
+              <span class="text">Last 7 Days</span>
+            </div>
+            <button class="btn-primary">
+              <span class="material-symbols-outlined">download</span>
+              EXPORT CSV
+            </button>
+          </div>
+        </header>
+
+        <section class="reports-container">
+          <div class="kpi-grid">
+            <div class="kpi-card bg-yellow">
+              <div class="kpi-header">
+                <span>Total Tasks</span>
+                <span class="material-symbols-outlined icon">stack</span>
+              </div>
+              <div class="kpi-value">24</div>
+              <div class="kpi-trend positive">
+                <span class="material-symbols-outlined">trending_up</span>
+                +12% vs last week
+              </div>
+            </div>
+
+            <div class="kpi-card bg-white">
+              <div class="kpi-header">
+                <span>Completed</span>
+                <span class="material-symbols-outlined icon">check_circle</span>
+              </div>
+              <div class="kpi-value">18</div>
+              <div class="kpi-trend positive">
+                <span class="material-symbols-outlined">trending_up</span>
+                +5% vs last week
+              </div>
+            </div>
+
+            <div class="kpi-card bg-white">
+              <div class="kpi-header">
+                <span>Open Bugs</span>
+                <span class="material-symbols-outlined icon">bug_report</span>
+              </div>
+              <div class="kpi-value">3</div>
+              <div class="kpi-trend negative">
+                <span class="material-symbols-outlined">trending_down</span>
+                -2 from yesterday
+              </div>
+            </div>
+
+            <div class="kpi-card bg-blue">
+              <div class="kpi-header">
+                <span>Efficiency</span>
+                <span class="material-symbols-outlined icon">bolt</span>
+              </div>
+              <div class="kpi-value">92%</div>
+              <div class="kpi-trend positive">
+                <span class="material-symbols-outlined">trending_up</span>
+                On fire!
+              </div>
+            </div>
+          </div>
+
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>Sprint Velocity</h3>
+              <div class="neo-chart-bars">
+                <div class="chart-col">
+                  <div
+                    class="bar"
+                    style="height: 40%"
+                    title="Mon: 4 tasks"
+                  ></div>
+                  <span class="label">Mon</span>
+                </div>
+                <div class="chart-col">
+                  <div
+                    class="bar"
+                    style="height: 60%"
+                    title="Tue: 6 tasks"
+                  ></div>
+                  <span class="label">Tue</span>
+                </div>
+                <div class="chart-col">
+                  <div
+                    class="bar"
+                    style="height: 30%"
+                    title="Wed: 3 tasks"
+                  ></div>
+                  <span class="label">Wed</span>
+                </div>
+                <div class="chart-col">
+                  <div
+                    class="bar active"
+                    style="height: 85%"
+                    title="Thu: 9 tasks"
+                  ></div>
+                  <span class="label">Thu</span>
+                </div>
+                <div class="chart-col">
+                  <div
+                    class="bar"
+                    style="height: 50%"
+                    title="Fri: 5 tasks"
+                  ></div>
+                  <span class="label">Fri</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <h3>Task Status</h3>
+              <div class="neo-chart-horizontal">
+                <div class="chart-row">
+                  <div class="row-header">
+                    <span>Done</span>
+                    <span>75%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      class="progress-fill neon-green"
+                      style="width: 75%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="chart-row">
+                  <div class="row-header">
+                    <span>In Progress</span>
+                    <span>15%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      class="progress-fill neon-pink"
+                      style="width: 15%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="chart-row">
+                  <div class="row-header">
+                    <span>To Do</span>
+                    <span>10%</span>
+                  </div>
+                  <div class="progress-track">
+                    <div
+                      class="progress-fill neon-blue"
+                      style="width: 10%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

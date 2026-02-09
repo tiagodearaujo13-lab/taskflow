@@ -3,210 +3,290 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('TaskFlow System Initialized!');
 
-  // Verificação
-  if (!document.getElementById('board')) {
-    console.log('Landing Page detected. Dashboard scripts skipped.');
+  // --- 1. LÓGICA GLOBAL (Roda em todas as páginas) ---
+  initGlobalFunctions();
 
-    return;
+  // --- 2. ROTEADOR (Detecta a página e roda a lógica específica) ---
+  if (document.getElementById('board')) {
+    initDashboard();
+  } else if (document.querySelector('.backlog-container')) {
+    initBacklog();
+  } else if (document.querySelector('.reports-container')) {
+    initReports();
   }
+});
 
-  // --- ELEMENTOS DO DOM ---
-  const draggables = document.querySelectorAll('.task-card');
-  const columns = document.querySelectorAll('.task-list');
-
-  const btnAddTask = document.getElementById('btn-add-task');
-  const modal = document.getElementById('task-modal');
-  const btnCloseModal = document.getElementById('btn-close-modal');
-  const taskForm = document.getElementById('task-form');
-  const todoList = document.getElementById('todo-list');
-
+// =========================================================
+// FUNÇÕES GLOBAIS (Sidebar, Menu, Logout)
+// =========================================================
+function initGlobalFunctions() {
+  // Menu Mobile
   const btnMenuMobile = document.getElementById('btn-menu-mobile');
   const sidebar = document.querySelector('.sidebar');
-  const btnCloseSidebar = document.querySelector('.btn-close-sidebar'); // Novo botão
+  const btnCloseSidebar = document.querySelector('.btn-close-sidebar');
 
-  // Abrir Menu
-  if (btnMenuMobile) {
+  if (btnMenuMobile && sidebar) {
     btnMenuMobile.addEventListener('click', (e) => {
-      e.stopPropagation(); // Impede que o clique feche o menu imediatamente
+      e.stopPropagation();
       sidebar.classList.add('active');
     });
-  }
 
-  // Fechar com o botão X
-  if (btnCloseSidebar) {
-    btnCloseSidebar.addEventListener('click', () => {
-      sidebar.classList.remove('active');
+    if (btnCloseSidebar) {
+      btnCloseSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('active') &&
+        !sidebar.contains(e.target) &&
+        e.target !== btnMenuMobile) {
+        sidebar.classList.remove('active');
+      }
     });
   }
 
-  // Fechar clicando fora (no corpo do site)
-  document.addEventListener('click', (e) => {
-    // Se o menu está aberto E o clique NÃO foi dentro da sidebar E NÃO foi no botão de abrir
-    if (sidebar.classList.contains('active') &&
-      !sidebar.contains(e.target) &&
-      e.target !== btnMenuMobile) {
+  // Logout Logic
+  const btnLogout = document.getElementById('btn-logout');
+  if (btnLogout) {
+    btnLogout.addEventListener('click', () => {
+      if (confirm("Are you sure you want to log out?")) {
+        window.location.href = 'login.html';
+      }
+    });
+  }
+}
 
-      sidebar.classList.remove('active');
-    }
-  });
+// =========================================================
+// PÁGINA: DASHBOARD (Kanban)
+// =========================================================
+function initDashboard() {
+  console.log("Dashboard Loaded");
 
-  // --- 1. DRAG AND DROP LOGIC ---
+  const draggables = document.querySelectorAll('.task-card');
+  const columns = document.querySelectorAll('.task-list');
+  const todoList = document.getElementById('todo-list'); // Coluna padrão para novas tasks
 
-  // Adiciona eventos aos cards que já existem no HTML
-  draggables.forEach(card => {
-    attachCardEvents(card);
-  });
+  // Inicializa Drag & Drop nos cards existentes
+  draggables.forEach(card => attachDragEvents(card));
 
-  // Configura as colunas para aceitar os cards
+  // Configura colunas
   columns.forEach(column => {
     column.addEventListener('dragover', e => {
-      e.preventDefault(); // Necessário para permitir o drop
-
-      // Descobre onde soltar o card (acima ou abaixo de outro)
+      e.preventDefault();
       const afterElement = getDragAfterElement(column, e.clientY);
       const draggable = document.querySelector('.is-dragging');
-
-      if (!draggable) return; // Segurança
+      if (!draggable) return;
 
       if (afterElement == null) {
         column.appendChild(draggable);
       } else {
         column.insertBefore(draggable, afterElement);
       }
-
-      updateCounts(); // Atualiza contadores em tempo real
+      updateCounts();
     });
   });
 
-  // --- 2. MODAL LOGIC ---
-
-  btnAddTask.addEventListener('click', () => {
-    modal.classList.remove('hidden');
-    setTimeout(() => modal.classList.add('active'), 10);
+  // Inicializa Modal de Criação (Reutilizando função auxiliar)
+  setupModal((title) => {
+    createKanbanCard(title, todoList);
   });
 
-  const closeModal = () => {
-    modal.classList.remove('active');
-    setTimeout(() => modal.classList.add('hidden'), 300);
-  };
+  updateCounts();
+}
 
-  btnCloseModal.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  // --- 3. CREATE TASK LOGIC ---
-
-  taskForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const titleInput = taskForm.querySelector('input[type="text"]');
-    const title = titleInput.value;
-
-    if (!title) return;
-
-    createTask(title);
-    titleInput.value = '';
-    closeModal();
+// Auxiliares do Dashboard
+function attachDragEvents(card) {
+  card.addEventListener('dragstart', () => card.classList.add('is-dragging'));
+  card.addEventListener('dragend', () => {
+    card.classList.remove('is-dragging');
     updateCounts();
   });
 
-  // --- FUNÇÕES AUXILIARES ---
-
-  // Função unificada para adicionar Drag & Drop E Deletar
-  function attachCardEvents(card) {
-    // Drag Starts
-    card.addEventListener('dragstart', () => {
-      card.classList.add('is-dragging');
-    });
-
-    // Drag Ends
-    card.addEventListener('dragend', () => {
-      card.classList.remove('is-dragging'); // Remove a classe
-      updateCounts();
-    });
-
-    // Lógica de Deletar (Botão "...")
-    const btnMore = card.querySelector('.btn-more');
-    if (btnMore) {
-      btnMore.addEventListener('click', () => {
-        // Efeito visual simples de confirmação
-        if (confirm("Deseja deletar esta tarefa?")) {
-          card.remove();
-          updateCounts();
-        }
-      });
-    }
+  // Botão de deletar (...)
+  const btnMore = card.querySelector('.btn-more');
+  if (btnMore) {
+    btnMore.addEventListener('click', () => {
+      if (confirm('Delete this task?')) {
+        card.remove();
+        updateCounts();
+      }
+    })
   }
+}
 
-  function createTask(title) {
-    const card = document.createElement('article');
-    card.classList.add('task-card', 'bg-yellow');
-    card.setAttribute('draggable', 'true');
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll('.task-card:not(.is-dragging)')];
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child };
+    } else {
+      return closest;
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
 
-    card.innerHTML = `
+function updateCounts() {
+  const todo = document.getElementById('todo-list').children.length;
+  const progress = document.getElementById('inprogress-list').children.length;
+  const done = document.getElementById('done-list').children.length;
+
+  document.getElementById('count-todo').innerText = todo;
+  document.getElementById('count-progress').innerText = progress;
+  document.getElementById('count-done').innerText = done;
+}
+
+function createKanbanCard(title, container) {
+  const card = document.createElement('article');
+  card.classList.add('task-card', 'bg-yellow');
+  card.setAttribute('draggable', 'true');
+  card.innerHTML = `
         <div class="card-header">
           <span class="tag tag-design">General</span>
-          <button class="btn-more" title="Delete Task">
-            <span class="material-symbols-outlined">delete</span> </button>
+          <button class="btn-more"><span class="material-symbols-outlined">delete</span></button>
         </div>
         <div class="card-body">
           <h4>${title}</h4>
-          <p>New task created manually via dashboard.</p>
+          <p>New task created manually.</p>
         </div>
         <footer class="card-footer">
-          <div class="avatars">
-             <div class="avatar-sm" style="background-color: #ccc;"></div>
-          </div>
-          <div class="meta-info">
-            <span class="material-symbols-outlined icon-sm">schedule</span>
-            <span>Now</span>
-          </div>
+          <div class="avatars"><div class="avatar-sm" style="background-color: #ccc;"></div></div>
+          <div class="meta-info"><span class="material-symbols-outlined icon-sm">schedule</span><span>Now</span></div>
         </footer>
-      `;
-
-    // Adiciona eventos ao novo card
-    attachCardEvents(card);
-
-    // Adiciona na coluna To Do
-    todoList.appendChild(card);
-  }
-
-  function getDragAfterElement(container, y) {
-    // Pega todos os cards que NÃO estão sendo arrastados
-    const draggableElements = [...container.querySelectorAll('.task-card:not(.is-dragging)')];
-
-    return draggableElements.reduce((closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
-  }
-
-  function updateCounts() {
-    document.getElementById('count-todo').innerText = document.getElementById('todo-list').children.length;
-    document.getElementById('count-progress').innerText = document.getElementById('inprogress-list').children.length;
-    document.getElementById('count-done').innerText = document.getElementById('done-list').children.length;
-  }
-
-  const btnLogout = document.getElementById('btn-logout');
-    
-    if (btnLogout) {
-        btnLogout.addEventListener('click', () => {
-            // Efeito de confirmação simples
-            if(confirm("Are you sure you want to log out?")) {
-                // Redireciona para o Login
-                window.location.href = 'login.html';
-            }
-        });
-    }
-
-    
-  // Inicializa contadores
+    `;
+  attachDragEvents(card);
+  container.appendChild(card);
   updateCounts();
-});
+}
+
+// =========================================================
+// PÁGINA: BACKLOG (Lista Vertical)
+// =========================================================
+function initBacklog() {
+  console.log("Backlog Loaded");
+
+  const backlogList = document.querySelector('.backlog-list'); // Container da lista
+
+  // Configura botões de deletar nos itens existentes
+  document.querySelectorAll('.backlog-card .btn-more').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (confirm('Remove item from backlog?')) {
+        e.target.closest('.backlog-card').remove();
+        updateBacklogCount();
+      }
+    });
+  });
+
+  // Usa o Modal Genérico para criar novo item
+  setupModal((title) => {
+    createBacklogItem(title, backlogList);
+  });
+}
+
+function createBacklogItem(title, container) {
+  const item = document.createElement('article');
+  item.className = 'backlog-card bg-white';
+  item.innerHTML = `
+        <div class="card-left">
+            <span class="material-symbols-outlined drag-handle">drag_indicator</span>
+            <div class="card-content">
+                <h4>${title}</h4>
+                <p>New item added to backlog.</p>
+            </div>
+        </div>
+        <div class="card-right">
+            <span class="tag tag-design">General</span>
+            <div class="meta-date">
+                 <span class="material-symbols-outlined icon-sm">calendar_today</span>
+                 <span>Today</span>
+            </div>
+            <div class="avatars"><div class="avatar-sm" style="background-color:#ccc"></div></div>
+            <button class="btn-more">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+        </div>
+    `;
+
+  // Adiciona evento de deletar no novo item
+  item.querySelector('.btn-more').addEventListener('click', () => {
+    if (confirm('Remove item from backlog?')) item.remove();
+  });
+
+  // Adiciona no topo da lista
+  container.insertBefore(item, container.firstChild);
+}
+
+function updateBacklogCount() {
+  // Se tiver um contador no header, atualizaria aqui
+}
+
+// =========================================================
+// PÁGINA: REPORTS (Animações de Gráfico)
+// =========================================================
+function initReports() {
+  console.log("Reports Loaded");
+
+  // Animação das Barras Verticais
+  const bars = document.querySelectorAll('.neo-chart-bars .bar');
+  bars.forEach(bar => {
+    // Salva a altura original que está no CSS style
+    const targetHeight = bar.style.height;
+    // Zera a altura
+    bar.style.height = '0%';
+    // Anima para a altura correta
+    setTimeout(() => {
+      bar.style.height = targetHeight;
+    }, 300);
+  });
+
+  // Animação das Barras Horizontais
+  const progressFills = document.querySelectorAll('.progress-fill');
+  progressFills.forEach(fill => {
+    const targetWidth = fill.style.width;
+    fill.style.width = '0%';
+    setTimeout(() => {
+      fill.style.width = targetWidth;
+    }, 300);
+  });
+}
+
+// =========================================================
+// UTILITÁRIO: CONFIGURAÇÃO DO MODAL (Genérico)
+// =========================================================
+function setupModal(onSubmitCallback) {
+  const btnAdd = document.querySelector('.btn-primary'); // Botão "Add" da página
+  const modal = document.getElementById('task-modal');
+  const btnClose = document.getElementById('btn-close-modal');
+  const form = document.getElementById('task-form');
+
+  if (!btnAdd || !modal || !form) return;
+
+  // Abrir
+  btnAdd.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+    setTimeout(() => modal.classList.add('active'), 10);
+    form.querySelector('input').focus();
+  });
+
+  // Fechar
+  const close = () => {
+    modal.classList.remove('active');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+  };
+  if (btnClose) btnClose.addEventListener('click', close);
+  modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+
+  // Submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = form.querySelector('input[type="text"]');
+    const value = input.value.trim();
+    if (value) {
+      onSubmitCallback(value); // Chama a função específica da página (Kanban ou Backlog)
+      input.value = '';
+      close();
+    }
+  });
+}

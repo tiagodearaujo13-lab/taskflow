@@ -2719,3 +2719,49 @@ label {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0px 0px #000;
 }
+
+/* --- BOTÃO DE LOGOUT NA SIDEBAR --- */
+.sidebar .sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Espaço entre Settings e Logout */
+}
+
+.sidebar .sidebar-footer .btn-logout {
+  width: 100%;
+  background-color: transparent;
+  color: #ff4444;
+  /* Vermelho Neon */
+  padding: 12px;
+  border: 2px solid #ff4444;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0px 0px #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar .sidebar-footer .btn-logout:hover {
+  background-color: #ff4444;
+  color: #FFFFFF;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px 0px #000000;
+  border-color: #000;
+}
+
+.sidebar .sidebar-footer .btn-logout:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+.sidebar .sidebar-footer .btn-logout .material-symbols-outlined {
+  font-size: 20px;
+}

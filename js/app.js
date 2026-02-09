@@ -194,6 +194,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('count-done').innerText = document.getElementById('done-list').children.length;
   }
 
+  const btnLogout = document.getElementById('btn-logout');
+    
+    if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+            // Efeito de confirmação simples
+            if(confirm("Are you sure you want to log out?")) {
+                // Redireciona para o Login
+                window.location.href = 'login.html';
+            }
+        });
+    }
+
+    
   // Inicializa contadores
   updateCounts();
 });

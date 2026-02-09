@@ -1,0 +1,162 @@
+// scss/pages/_settings.scss
+
+.settings-container {
+    padding: 32px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.settings-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 40px;
+}
+
+// --- CARTÃO DE CONFIGURAÇÃO GENÉRICO ---
+.settings-card {
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: $radius-md;
+    box-shadow: $shadow-neo;
+    padding: 32px;
+    
+    &.bg-yellow { background-color: $card-yellow; }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+        padding-bottom: 16px;
+
+        h3 {
+            font-family: $font-display;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-black {
+            background-color: #000;
+            color: #fff;
+            padding: 4px 8px;
+            font-weight: 700;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+    }
+}
+
+// --- FORMULÁRIO DE PERFIL ---
+.settings-form {
+    .form-row {
+        display: flex;
+        gap: 16px;
+        @media (max-width: 600px) { flex-direction: column; gap: 0; }
+    }
+    
+    .form-group {
+        width: 100%;
+        margin-bottom: 16px;
+        
+        label {
+            color: #000; // Label preto no fundo branco
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        // Sobrescrevendo estilo do input para fundo branco
+        .neo-input {
+            background-color: #f5f5f5;
+            &:focus { background-color: #fff; }
+        }
+    }
+}
+
+// --- PLAN & USAGE ---
+.usage-stats {
+    margin-bottom: 24px;
+
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-family: $font-display;
+    }
+
+    .progress-track {
+        height: 24px;
+        background-color: #fff;
+        border: 2px solid #000;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 8px;
+
+        .progress-fill {
+            height: 100%;
+            border-right: 2px solid #000;
+            &.neon-pink { background-color: $color-neon-pink; }
+        }
+    }
+
+    .limit-warning {
+        font-size: 12px;
+        color: #d32f2f;
+        font-weight: 700;
+        text-align: right;
+    }
+}
+
+.plan-actions {
+    .btn-block { width: 100%; justify-content: center; }
+    .small-text { text-align: center; font-size: 12px; margin-top: 8px; opacity: 0.7; font-weight: 600; }
+}
+
+// --- DANGER ZONE (Apagar Banco) ---
+.settings-card.danger-zone {
+    border-color: #d32f2f; // Borda Vermelha
+    background-color: #fff0f0; // Fundo vermelho bem claro
+
+    .card-header h3 { color: #d32f2f; }
+
+    p {
+        color: #d32f2f;
+        margin-bottom: 24px;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
+    .btn-danger {
+        width: 100%;
+        background-color: #d32f2f;
+        color: #fff;
+        padding: 14px;
+        border: 2px solid #000;
+        border-radius: $radius-sm;
+        font-weight: 800;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-shadow: $shadow-neo;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            background-color: #b71c1c;
+            transform: translate(-2px, -2px);
+            box-shadow: $shadow-neo-lg;
+        }
+
+        &:active { transform: translate(0, 0); box-shadow: $shadow-neo-sm; }
+    }
+}

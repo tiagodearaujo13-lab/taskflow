@@ -2544,3 +2544,178 @@ label {
 .charts-grid .chart-card .neo-chart-horizontal .chart-row .progress-track .progress-fill.neon-blue {
   background-color: #00ffff;
 }
+
+/* --- ESTILOS DA PÁGINA DE SETTINGS --- */
+.settings-container {
+  padding: 32px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.settings-grid {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-bottom: 40px;
+}
+
+.settings-card {
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  box-shadow: 4px 4px 0px 0px #000;
+  padding: 32px;
+}
+
+.settings-card.bg-yellow {
+  background-color: #ffeb3b;
+}
+
+.settings-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 16px;
+}
+
+.settings-card .card-header h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-card .card-header .badge-black {
+  background-color: #000;
+  color: #fff;
+  padding: 4px 8px;
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+/* Formulário */
+.settings-form .form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.settings-form .form-group {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.settings-form .form-group label {
+  color: #000;
+  font-size: 12px;
+  margin-bottom: 6px;
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.settings-form .form-group .neo-input {
+  background-color: #f5f5f5;
+}
+
+.settings-form .form-group .neo-input:focus {
+  background-color: #fff;
+}
+
+/* Planos */
+.usage-stats {
+  margin-bottom: 24px;
+}
+
+.usage-stats .stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #000;
+}
+
+.usage-stats .progress-track {
+  height: 24px;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.usage-stats .progress-track .progress-fill {
+  height: 100%;
+  border-right: 2px solid #000;
+  background-color: #ff00ff;
+}
+
+.usage-stats .limit-warning {
+  font-size: 12px;
+  color: #d32f2f;
+  font-weight: 700;
+  text-align: right;
+}
+
+.plan-actions .btn-block {
+  width: 100%;
+  justify-content: center;
+}
+
+.plan-actions .small-text {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 8px;
+  opacity: 0.7;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Danger Zone */
+.settings-card.danger-zone {
+  border-color: #d32f2f;
+  background-color: #fff0f0;
+}
+
+.settings-card.danger-zone .card-header h3 {
+  color: #d32f2f;
+}
+
+.settings-card.danger-zone p {
+  color: #d32f2f;
+  margin-bottom: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.settings-card.danger-zone .btn-danger {
+  width: 100%;
+  background-color: #d32f2f;
+  color: #fff;
+  padding: 14px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 4px 4px 0px 0px #000;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-card.danger-zone .btn-danger:hover {
+  background-color: #b71c1c;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000;
+}
